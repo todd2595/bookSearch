@@ -16,13 +16,15 @@ class info extends Component {
             .then(res => 
                 this.setState({ book: res.data.items[0].volumeInfo }))
             .catch(err => console.log(err));
+            
     }
 
     handleFormSubmit = event => {
         event.preventDefault();
+        console.log(this.state.book);
         API.saveBook({
             title: this.state.book.title,
-            author: this.state.book.author,
+            author: this.state.book.authors,
             summary: this.state.book.description,
             published:this.state.book.publishedDate,
             link:this.state.book.id

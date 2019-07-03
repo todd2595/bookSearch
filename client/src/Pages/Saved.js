@@ -3,6 +3,8 @@ import API from "../utils/API";
 import { List, ListItem } from "../components/List";
 import ActionButton from "../components/ActionButton";
 import { Link } from "react-router-dom";
+import Card from "../components/Card"
+import Wrapper from "../components/Wrapper";
 
 class Saved extends Component {
     state = {
@@ -10,45 +12,36 @@ class Saved extends Component {
     };
 
     componentDidMount() {
-     this.refresh();
-     
+     this.refresh();     
     }
 
     refresh = () => {
       API.getBooks().then(res => this.setState({
         books: res.data
-    })).catch(err => console.log(err));
-    
-    }
+    })).catch(err => console.log(err))}
 
     deleteRcd = id => {
       API.deleteBook(id).then(res => this.refresh())
-      console.log(this.state.books)
     }
-
-
 
     handleFormSubmit = event => {
         event.preventDefault();
-       
     }
 
 
     render() {
         return (
-            <List>
+          <Wrapper>
             {this.state.books.map(book => (
-              <ListItem key={book._id}>
-                <Link to={"/books/" + book.id}>
-                  <strong>
-                    {book.title} by {book.authors}
-                  </strong>
-                </Link>
-                <ActionButton value = {book._id} onClick={() => this.deleteRcd(book._id)} />
-              </ListItem>
+            <Card
+            key={book.id}
+            title={book.title}
+            author={book.author}
+            summary={book.summary}
+            deleteRcd={this.deleteRcd}
+            />
             ))}
-          </List>
-
+           </Wrapper>
         )
     }
 }
