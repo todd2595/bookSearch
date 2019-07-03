@@ -2,7 +2,7 @@ const router = require("express").Router();
 const booksController = require("../../controllers/booksController");
 
 
-router.route("/books/:id")
+router.route("/books")
   .post(booksController.create);
 
 router.route("/saved")

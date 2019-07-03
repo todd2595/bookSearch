@@ -22,9 +22,10 @@ class info extends Component {
     handleFormSubmit = event => {
         event.preventDefault();
         console.log(this.state.book);
+        console.log(this.state.book.imageLinks);
         API.saveBook({
             title: this.state.book.title,
-            author: this.state.book.authors,
+            author: this.state.book.authors[0],
             summary: this.state.book.description,
             published:this.state.book.publishedDate,
             link:this.state.book.id

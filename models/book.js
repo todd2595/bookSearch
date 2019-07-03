@@ -11,8 +11,7 @@ const bookSchema = new Schema({
   published: String,
   date: { type: Date, default: Date.now },
   key: ObjectId
-},
-{strict: true});
+});
 
 const Book = mongoose.model("Book", bookSchema);
 
