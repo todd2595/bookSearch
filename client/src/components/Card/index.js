@@ -12,7 +12,7 @@ function Card(props) {
     <li className="list-group-item">{props.author}</li>
   </ul>
   <div className="card-body">
-    <button onClick={props.deleteRcd} className="card-link">Delete</button>
+    <button onClick={() => props.deleteRcd(props.key)} className="card-link">Delete</button>
     <a href="#" className="card-link">Google Link</a>
   </div>
 </div>
