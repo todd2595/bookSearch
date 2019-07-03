@@ -9,12 +9,18 @@ import ActionButton from "../components/ActionButton";
 
 class info extends Component {
     state = {
-        book: {}
+        book: {},
+        id:""
     }
     componentDidMount() {
         API.search(this.props.match.params.id)
             .then(res => 
-                this.setState({ book: res.data.items[0].volumeInfo }))
+                this.setState({ 
+
+                    id: res.data.items[0].id,
+                    book: res.data.items[0].volumeInfo
+                    
+                }))
             .catch(err => console.log(err));
             
     }
@@ -28,7 +34,8 @@ class info extends Component {
             author: this.state.book.authors[0],
             summary: this.state.book.description,
             published:this.state.book.publishedDate,
-            link:this.state.book.id
+            link:this.state.id,
+            image:this.state.book.imageLinks.thumbnail
           })
             .then(console.log("LL"))
             .catch(err => console.log(err));

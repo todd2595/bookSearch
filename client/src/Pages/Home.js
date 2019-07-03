@@ -19,7 +19,7 @@ class Home extends Component {
   searchBooks = (query) => {
     API.search(query)
       .then(res => 
-        // console.log(res.data)
+        // console.log(res.data.items[0])
       this.setState({ result: res.data.items })
       )
       .catch(err => console.log(err));
@@ -47,9 +47,6 @@ class Home extends Component {
        books: res.data
    })).catch(err => console.log(err))}
 
-   deleteRcd = id => {
-     API.deleteBook(id).then(res => this.refresh())
-   }
 
   render() {
     return (

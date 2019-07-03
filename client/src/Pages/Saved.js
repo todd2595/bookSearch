@@ -21,6 +21,7 @@ class Saved extends Component {
     })).catch(err => console.log(err))}
 
     deleteRcd = id => {
+      console.log(this.state.books[0]._id)
       API.deleteBook(id).then(res => this.refresh())
     }
 
@@ -34,7 +35,9 @@ class Saved extends Component {
           <Wrapper>
             {this.state.books.map(book => (
             <Card
-            key={book.id}
+            key={book._id}
+            id={book._id}
+            image={book.image}
             title={book.title}
             author={book.author}
             summary={book.summary}
